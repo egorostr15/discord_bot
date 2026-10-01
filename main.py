@@ -54,10 +54,10 @@ async def say(interaction:discord.Interaction,text:str):
 async def mute(
         interaction: discord.Interaction,member: discord.Member,minutes:int):
     try:
-    await member.timeout(timedelta(minutes=minutes),reason="админ")
-    await interaction.response.send_message( f"{member.mention}получил тайм-аут на {minutes} минута.")
+       await member.timeout(timedelta(minutes=minutes),reason="админ")
+       await interaction.response.send_message( f"{member.mention}получил тайм-аут на {minutes} минута.")
     except discord.errors.Forbidden:
-    await interaction.response.send_message(f"Недостаточно прав{member.mention}")
+       await interaction.response.send_message(f"Недостаточно прав{member.mention}")
 
 
 bot.run(TOKEN)

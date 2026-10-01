@@ -53,8 +53,12 @@ async def say(interaction:discord.Interaction,text:str):
 @bot.tree.command(name="mute", description="выдать мут", guild=GUILD)
 async def mute(
         interaction: discord.Interaction,member: discord.Member,minutes:int):
+    try:
     await member.timeout(timedelta(minutes=minutes),reason="админ")
     await interaction.response.send_message( f"{member.mention}получил тайм-аут на {minutes} минута.")
+    except discord.errors.Forbidden:
+    await interaction.response.send_message(f"Недостаточно прав{member.mention}")
+
 
 bot.run(TOKEN)
 
